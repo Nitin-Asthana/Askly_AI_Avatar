@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Talking Avatar Service Demo</title>
+  <link href="./css/styles.css" rel="stylesheet">
+  <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+  <script src="./js/basic.js"></script>
+  <script src="./js/exit_session.js"></script>
+</head>
+<body>
+  <!-- Exit Button at Top Right -->
+  <button id="exitSessionBtn" class="session-btn exit-btn" style="font-size: 1em; padding: 6px 20px; position: fixed; right: 24px; top: 24px; z-index: 200;">Exit</button>
+
+  <!-- Header -->
+  <div style="text-align:center; margin-top:24px; margin-bottom:8px;">
+    <span style="font-size:2.3em; font-weight:700; color:#1976d2; display:inline-block; letter-spacing:1px;">Azure Enablement Bootcamp</span>
+    <div style="font-size:1.1em; color:#555; margin-top:8px;">via AI Avatar Instructor.</div>
+  </div>
+
+  <!-- Control Bar -->
+  <div id="controlBar" style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center; align-items:center; padding:10px 0 8px 0; background:rgba(255,255,255,0.95); position:relative; z-index:20; margin-bottom:12px;">
+    <label for="avatarCharacter" style="font-weight:500;">Avatar:</label>
+    <select id="avatarCharacter" style="margin-right:10px;">
+  <option value="Harry">Harry</option>
+    </select>
+    <button id="startSession" class="session-btn" onclick="window.startSession()">Start Session</button>
+    <button id="stopSession" class="session-btn" onclick="window.stopSession()" disabled="disabled">Stop Session</button>
+    <button id="speak" class="session-btn" onclick="window.speak()" disabled="disabled">Speak</button>
+    <button id="stopSpeaking" class="session-btn" onclick="window.stopSpeaking()" disabled="disabled">Stop Speaking</button>
+    <button id="prevSlideBtn" class="ppt-btn">Previous Slide</button>
+    <button id="nextSlideBtn" class="ppt-btn">Next Slide</button>
+    <button id="speakSlideBtn" class="ppt-btn">Speak Slide Narration</button>
+  </div>
+
+  <!-- Slide Container -->
+  <div id="slideWithAvatar">
+    <img id="slideImage" alt="Slide Image" />
+    <div id="noDataMsg" style="position:absolute;top:40%;left:0;width:100%;text-align:center;font-size:1.5em;color:#888;display:none;z-index:100;">No slides or narration data loaded.</div>
+  </div>
+
+  <!-- Avatar PiP box at bottom right -->
+  <div id="remoteVideo">
+    <img id="remoteVideoPlaceholder" src="./image/azure.jpg" alt="Azure Placeholder" style="display:block;" />
+  </div>
+
+  <!-- Hidden fields for APIKey and region (required by basic.js) -->
+  <input type="hidden" id="APIKey" value="B1aspfZLcC0hG92fSBNA85iOcLIH65iMUQmg42k3sEkInqBYLm1HJQQJ99BGAC5RqLJXJ3w3AAAYACOGBWQW">
+  <input type="hidden" id="region" value="westeurope">
+  <!-- Hidden fields for enablePrivateEndpoint and privateEndpoint (required by basic.js) -->
+  <input type="hidden" id="enablePrivateEndpoint">
+  <input type="hidden" id="privateEndpoint" value="">
+
+  <style>
+    #slideWithAvatar {
+      position: fixed;
+      left: 0;
+      top: 140px;
+      width: 100vw;
+      height: calc(100vh - 150px);
+      z-index: 10;
+      background: none;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+    }
+    #slideImage {
+      max-width: 90vw;
+      max-height: 80vh;
+      width: auto;
+      height: auto;
+      margin: 0 auto;
+      display: block;
+      box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+      border-radius: 0;
+      background: #fff;
+      object-fit: contain;
+      position: relative;
+    }
+    #remoteVideo {
+      position: fixed !important;
+      right: 32px !important;
+      bottom: 32px !important;
+      left: auto !important;
+      top: auto !important;
+      width: 340px;
+      height: 340px;
+      background: #eee;
+      border-radius: 22px;
+      box-shadow: 0 6px 32px rgba(0,0,0,0.22);
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: fixed;
+    }
+    #remoteVideoPlaceholder {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 22px;
+      z-index: 2;
+      background: #fff;
+      display: none;
+    }
+  </style>
+</body>

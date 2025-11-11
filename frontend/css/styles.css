@@ -1,0 +1,1036 @@
+/* HIDE voiceNavIndicator - prevent from showing */
+#voiceNavIndicator {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+#avatarPiP {
+    width: 320px !important;
+    height: 900px !important;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 1000;
+    background: #fff;
+    border-radius: 28px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 2px solid #e0e0e0;
+}
+#avatarPiP #remoteVideo video {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 28px;
+    background: #000;
+    transform: none !important;
+}
+#avatarPiP #remoteVideo {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+}
+#avatarPlaceholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+    border-radius: 28px;
+}
+.nav-btn {
+    background: linear-gradient(90deg, #ff9800 60%, #ffc107 100%) !important;
+    color: #fff !important;
+}
+
+/* Voice Toggle Switch Styling */
+.voice-toggle-container {
+    display: inline-block;
+    margin-right: 12px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.voice-toggle-label-top {
+    display: block;
+    font-size: 10px;
+    font-weight: 600;
+    color: #555;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.voice-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.voice-toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.voice-toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, #757575 60%, #9e9e9e 100%);
+    border-radius: 24px;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(117, 117, 117, 0.3);
+    box-shadow: 0 2px 8px rgba(117, 117, 117, 0.2);
+}
+
+.voice-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.voice-toggle-switch input:checked + .voice-toggle-slider {
+    background: linear-gradient(90deg, #1976d2 60%, #00b8d4 100%);
+    border-color: rgba(25, 118, 210, 0.5);
+    box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+}
+
+.voice-toggle-switch input:checked + .voice-toggle-slider:before {
+    transform: translateX(24px);
+}
+
+.voice-toggle-switch:hover .voice-toggle-slider {
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.4);
+}
+
+.voice-toggle-switch input:checked:hover + .voice-toggle-slider {
+    box-shadow: 0 4px 12px rgba(25, 118, 210, 0.5);
+}
+
+/* Pulse animation when voice is enabled and active */
+.voice-toggle-btn:not(.disabled) {
+    animation: voicePulse 2s infinite;
+}
+
+@keyframes voicePulse {
+    0% {
+        box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+    }
+    50% {
+        box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3), 0 0 0 4px rgba(25, 118, 210, 0.1);
+    }
+    100% {
+        box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+    }
+}
+
+/* Restore blue ppt-btn style and ensure only session-btn is red */
+.ppt-btn {
+    background: linear-gradient(90deg, #1976d2 60%, #00b8d4 100%);
+    color: #fff;
+    border: 2px solid rgba(25, 118, 210, 0.3); /* Enhanced border */
+    border-radius: 12px; /* Slightly more rounded */
+    padding: 8px 22px;
+    font-size: 1.08em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    /* Enhanced multi-layer shadow */
+    box-shadow: 
+        0 4px 16px rgba(25, 118, 210, 0.15),
+        0 2px 8px rgba(25, 118, 210, 0.08),
+        0 0 0 1px rgba(25, 118, 210, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.ppt-btn:hover {
+    background: linear-gradient(90deg, #1976d2 40%, #00b8d4 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 24px rgba(25, 118, 210, 0.25),
+        0 4px 12px rgba(25, 118, 210, 0.15),
+        0 0 0 1px rgba(25, 118, 210, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(25, 118, 210, 0.5);
+}
+
+.ppt-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 3px 12px rgba(25, 118, 210, 0.2),
+        0 2px 6px rgba(25, 118, 210, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#unloadContentBtn {
+    color: #fff !important;
+    background: linear-gradient(90deg, #d32f2f 60%, #ff5252 100%) !important;
+    position: absolute;
+    top: 18px;
+    right: 32px;
+    z-index: 10;
+    /* Enhanced shadow matching other buttons */
+    box-shadow: 
+        0 4px 16px rgba(211, 47, 47, 0.15),
+        0 2px 8px rgba(211, 47, 47, 0.08),
+        0 0 0 1px rgba(211, 47, 47, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+    border: 2px solid rgba(211, 47, 47, 0.3) !important;
+    border-radius: 12px !important;
+}
+
+#unloadContentBtn:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 
+        0 6px 24px rgba(211, 47, 47, 0.25),
+        0 4px 12px rgba(211, 47, 47, 0.15),
+        0 0 0 1px rgba(211, 47, 47, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+#unloadContentBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+#slideWithAvatar {
+    min-height: 0;
+    max-height: 100%;
+}
+/* Removed duplicate #slideWithAvatar #slideImage */
+/* Removed duplicate #avatarPiP for consistency */
+#slideWithAvatar {
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+}
+#slideWithAvatar {
+    width: 100vw;
+}
+#slideWithAvatar {
+    position: relative;
+    width: 100vw;
+    flex: 1 1 auto;
+    margin: 0;
+    background: transparent;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 0;
+    max-height: 100%;
+    padding-bottom: 80px;
+}
+/* Removed duplicate #slideWithAvatar #slideImage */
+/* Main slide image style: positioned to left to avoid avatar overlap */
+#slideWithAvatar #slideImage {
+    position: relative;
+    display: block;
+    max-width: 75vw; /* Back to original optimal size */
+    max-height: 80vh; /* Back to original optimal size */
+    width: auto; /* Let width be determined by height to maintain ratio */
+    height: calc(75vw * 9 / 16); /* Force 16:9 ratio based on width */
+    max-height: 80vh;
+    margin: 20px 0 20px 1vw;
+    object-fit: cover; /* Changed from contain to cover for better text */
+    object-position: center;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(25,118,210,0.12);
+    transition: max-width 0.3s, max-height 0.3s;
+    image-rendering: -webkit-optimize-contrast; /* Better text rendering */
+    image-rendering: optimize-contrast;
+    image-rendering: crisp-edges;
+    filter: contrast(1.1) brightness(1.05); /* Enhance text clarity */
+}
+
+/* Also update the direct slideImage styling for consistency */
+#slideImage {
+    max-width: 75vw !important; /* Back to original optimal size */
+    max-height: 80vh !important; /* Back to original optimal size */
+    width: auto !important; /* Let width be determined by height to maintain ratio */
+    height: calc(75vw * 9 / 16) !important; /* Force 16:9 ratio based on width */
+    margin: 20px 0 20px 1vw !important;
+    object-fit: cover !important; /* Changed from contain to cover for better text */
+    object-position: center !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15) !important;
+    border-radius: 16px !important;
+    background: #fff !important;
+    image-rendering: -webkit-optimize-contrast !important; /* Better text rendering */
+    image-rendering: optimize-contrast !important;
+    image-rendering: crisp-edges !important;
+    filter: contrast(1.1) brightness(1.05) !important; /* Enhance text clarity */
+}
+/* Main avatar box style: large and viewport-based */
+#avatarPiP {
+    position: absolute;
+    bottom: 22px;
+    right: 16px;
+    width: 23.4vw;
+    height: 34.2vh;
+    max-width: 378px;
+    max-height: 360px;
+    background: #fff;
+    border-radius: 24px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.25), 0 2px 16px rgba(25,118,210,0.15); /* Enhanced multi-layer shadow */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    z-index: 15; /* Increased z-index for better visibility */
+    border: 4px solid #1976d2; /* Slightly thicker border */
+    padding: 0;
+    /* Add subtle glow effect */
+    box-shadow: 
+        0 8px 40px rgba(0,0,0,0.25), 
+        0 2px 16px rgba(25,118,210,0.15),
+        0 0 0 1px rgba(25,118,210,0.1),
+        inset 0 1px 0 rgba(255,255,255,0.2); /* Inner highlight */
+    /* Subtle animation to draw attention */
+    animation: avatarGlow 3s ease-in-out infinite alternate;
+}
+
+#avatarVideoContainer, #avatarContainer {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.session-btn {
+    background: linear-gradient(90deg, #d32f2f, #ff5252);
+    color: #fff;
+    border: 2px solid rgba(211, 47, 47, 0.3); /* Enhanced border */
+    border-radius: 12px; /* Slightly more rounded */
+    padding: 8px 22px;
+    font-size: 1.08em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    /* Enhanced multi-layer shadow */
+    box-shadow: 
+        0 4px 16px rgba(211, 47, 47, 0.15),
+        0 2px 8px rgba(211, 47, 47, 0.08),
+        0 0 0 1px rgba(211, 47, 47, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 2px;
+    min-width: 120px;
+    position: relative;
+    overflow: hidden;
+}
+
+.session-btn:hover {
+    background: linear-gradient(90deg, #d32f2f 40%, #ff5252 100%);
+    transform: translateY(-2px);
+    box-shadow: 
+        0 6px 24px rgba(211, 47, 47, 0.25),
+        0 4px 12px rgba(211, 47, 47, 0.15),
+        0 0 0 1px rgba(211, 47, 47, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border-color: rgba(211, 47, 47, 0.5);
+}
+
+.session-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 3px 12px rgba(211, 47, 47, 0.2),
+        0 2px 6px rgba(211, 47, 47, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 900px) {
+    .full-width-slide {
+        max-width: 100vw;
+        min-width: 0;
+        min-height: 400px;
+    }
+    .below-avatar {
+        max-width: 100vw;
+        min-width: 0;
+        height: 350px;
+        min-height: 250px;
+    }
+    #slideImage {
+        min-height: 250px !important;
+        max-width: 95vw !important;
+        width: auto !important; /* Let width be determined by height */
+        height: calc(95vw * 9 / 16) !important; /* Force 16:9 ratio */
+        max-height: 70vh !important;
+        margin: 15px auto !important;
+        object-fit: cover !important; /* Better text display */
+        object-position: center !important;
+        filter: contrast(1.1) brightness(1.05) !important; /* Enhance text clarity */
+    }
+    #slideWithAvatar #slideImage {
+        max-width: 95vw;
+        width: auto; /* Let width be determined by height */
+        height: calc(95vw * 9 / 16); /* Force 16:9 ratio */
+        max-height: 70vh;
+        margin: 15px auto;
+        object-fit: cover; /* Better text display */
+        object-position: center;
+        filter: contrast(1.1) brightness(1.05); /* Enhance text clarity */
+    }
+    /* Stack navigation buttons vertically on mobile */
+    #prevSlideBtn, #nextSlideBtn {
+        display: block;
+        margin: 4px 24px 4px auto;
+        width: 120px;
+    }
+}
+#remoteVideo video, #remoteVideo canvas {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 12px;
+    background: #222;
+}
+/* Modern card for upload/process */
+.card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 24px 32px 20px 32px;
+    margin: 24px auto 32px auto;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.ppt-label {
+    font-size: 1.1em;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+.session-btn {
+    /* This duplicate definition is overridden by the enhanced version above */
+    background: linear-gradient(90deg, #d32f2f 60%, #ff5252 100%);
+    color: #fff;
+    border: 2px solid rgba(211, 47, 47, 0.3);
+    border-radius: 12px;
+    padding: 8px 22px;
+    font-size: 1.08em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    box-shadow: 
+        0 4px 16px rgba(211, 47, 47, 0.15),
+        0 2px 8px rgba(211, 47, 47, 0.08),
+        0 0 0 1px rgba(211, 47, 47, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 0 2px;
+}
+.session-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 3px 12px rgba(211, 47, 47, 0.2),
+        0 2px 6px rgba(211, 47, 47, 0.1),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.session-btn:disabled {
+    background: #ef9a9a;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    border-color: rgba(211, 47, 47, 0.1);
+    box-shadow: 
+        0 2px 8px rgba(211, 47, 47, 0.05),
+        inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.ppt-btn:disabled {
+    background: #90caf9;
+    color: #fff;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+    border-color: rgba(25, 118, 210, 0.1);
+    box-shadow: 
+        0 2px 8px rgba(25, 118, 210, 0.05),
+        inset 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+.ppt-status {
+    margin-top: 10px;
+    color: #1976d2;
+    font-size: 0.98em;
+}
+.icon-upload::before {
+    content: '\1F4E4'; /* inbox tray emoji */
+    margin-right: 6px;
+}
+.icon-process::before {
+    content: '\2699'; /* gear emoji */
+    margin-right: 6px;
+}
+
+/* Layout for sidebar and content */
+#mainContent {
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
+    margin-top: 16px;
+}
+#sidebar {
+    min-width: 340px;
+    max-width: 360px;
+    background: #f5f7fa;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    padding: 18px 18px 18px 22px;
+    height: fit-content;
+}
+#contentArea {
+    flex: 1;
+    min-width: 0;
+}
+/* Make config section collapsible if needed */
+.full-width-slide {
+    width: 100%;
+    max-width: 1400px;
+    min-width: 320px;
+    min-height: 500px;
+    margin: 0 auto;
+    justify-content: center;
+}
+.below-avatar {
+    width: 100%;
+    max-width: 420px;
+    min-width: 220px;
+    min-height: 320px;
+    height: 420px;
+    margin: 0 auto;
+    justify-content: center;
+}
+#slideWithAvatar {
+    position: relative;
+    width: 100vw;
+    height: 90vh;
+    margin: 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+
+
+body {
+    background: #fff;
+    min-height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+#remoteVideoPiP, #remoteVideoFull {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#avatarFullScreen {
+    width: 100%;
+    max-width: 700px;
+    min-width: 220px;
+    min-height: 220px;
+    height: 32vh;
+    margin: 0 auto;
+    display: none;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    padding: 28px 28px 22px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: box-shadow 0.2s;
+    min-height: 0;
+    max-height: 100%;
+}
+#sidebar {
+    max-width: 100%;
+    margin-bottom: 18px;
+}
+/*
+ *  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+ *
+ *  Use of this source code is governed by a BSD-style license
+ *  that can be found in the LICENSE file in the root of the source
+ *  tree.
+ */
+.hidden {
+    display: none;
+}
+
+.highlight {
+    background-color: #eee;
+    font-size: 1.2em;
+    margin: 0 0 30px 0;
+    padding: 0.2em 1.5em;
+}
+
+.warning {
+    color: red;
+    font-weight: 400;
+}
+
+@media screen and (min-width: 1000px) {
+    /* hack! to detect non-touch devices */
+    div#links a {
+        line-height: 0.8em;
+    }
+}
+
+audio {
+    max-width: 100%;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    margin: 0;
+    padding: 1em;
+    word-break: break-word;
+}
+
+button {
+    background-color: #d84a38;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8em;
+    margin: 10px 0 1em 0;
+    padding: 0.5em 0.7em 0.6em 0.7em;
+}
+
+button:active {
+    background-color: #cf402f;
+}
+
+button:hover {
+    background-color: #cf402f;
+}
+
+button[disabled] {
+    color: #ccc;
+}
+
+button[disabled]:hover {
+    background-color: #d84a38;
+}
+
+canvas {
+    background-color: #ccc;
+    max-width: 100%;
+    width: 100%;
+}
+
+html, body {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #fff;
+}
+body {
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+    margin-bottom: 18px;
+    box-sizing: border-box;
+    background: #fff;
+}
+/* Removed stray color and font-weight properties that were outside any selector */
+
+h3 {
+    border-top: 1px solid #eee;
+    color: #666;
+    font-weight: 500;
+    margin: 10px 0 10px 0;
+    white-space: nowrap;
+}
+
+li {
+    margin: 0 0 0.4em 0;
+}
+
+html {
+    /* avoid annoying page width change
+    when moving from the home page */
+    overflow-y: scroll;
+}
+
+img {
+    border: none;
+    max-width: 100%;
+}
+
+input[type=radio] {
+    position: relative;
+    top: -1px;
+}
+
+p {
+    color: #444;
+    font-weight: 300;
+}
+
+/* Removed duplicate #avatarPiP for consistency */
+#remoteVideoPiP, #remoteVideoFull {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+#remoteVideoPiP video, #remoteVideoPiP img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 22px;
+    background: #fff;
+}
+#remoteVideoPiP, #remoteVideoFull {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+}
+#remoteVideoPiP video, #remoteVideoPiP img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+    background: #fff;
+}
+#remoteVideoPiP, #remoteVideoFull {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+}
+#remoteVideoPiP video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+section:last-of-type {
+    border-bottom: none;
+    padding: 0 0 1em 0;
+}
+
+select {
+    margin: 0 1em 1em 0;
+    position: relative;
+    top: -1px;
+}
+
+h1 span {
+    white-space: nowrap;
+}
+
+a {
+    color: #1D6EEE;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+h1 a {
+    font-weight: 300;
+    margin: 0 10px 0 0;
+    white-space: nowrap;
+}
+
+a:hover {
+    color: #3d85c6;
+    text-decoration: underline;
+}
+
+a#viewSource {
+    display: block;
+    margin: 1.3em 0 0 0;
+    border-top: 1px solid #999;
+    padding: 1em 0 0 0;
+}
+
+div#errorMsg p {
+    color: #F00;
+}
+
+div#links a {
+    display: block;
+    line-height: 1.3em;
+    margin: 0 0 1.5em 0;
+}
+
+div.outputSelector {
+    margin: -1.3em 0 2em 0;
+}
+
+p.description {
+    margin: 0 0 0.5em 0;
+}
+
+strong {
+    font-weight: 500;
+}
+
+textarea {
+    font-family: 'Roboto', sans-serif;
+}
+
+video {
+    background: #222;
+    margin: 0 0 20px 0;
+    --width: 100%;
+    width: var(--width);
+    height: calc(var(--width) * 0.75);
+}
+
+ul {
+    margin: 0 0 0.5em 0;
+}
+
+@media screen and (max-width: 650px) {
+    .highlight {
+        font-size: 1em;
+        margin: 0 0 20px 0;
+        padding: 0.2em 1em;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+}
+
+@media screen and (max-width: 550px) {
+    button:active {
+        background-color: darkRed;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    h1 {
+        font-size: 20px;
+    }
+}
+
+textarea {
+    width: 800px;
+    min-height: 60px;
+    margin-bottom: 10px;
+}
+
+#webrtc textarea {
+    width: 800px;
+    min-height: 100px;
+    resize: none;
+}
+
+#knownIssues {
+    color: red;
+}
+
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 26px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #d84a38;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #d84a38;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(20px);
+    -ms-transform: translateX(20px);
+    transform: translateX(20px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.switchLabel {
+    display: inline-block;
+    vertical-align: middle;
+    position: relative;
+    margin-top: 5px;
+}
+.collapsible {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+  }
+  
+  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+  .active, .collapsible:hover {
+    background-color: #ccc;
+  }
+  
+  /* Style the collapsible content. Note: hidden by default */
+  .content {
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+  }
+/* Visually disable buttons with .disabled class */
+button.disabled, .session-btn.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Avatar glow animation for enhanced visibility */
+@keyframes avatarGlow {
+    0% {
+        box-shadow: 
+            0 8px 40px rgba(0,0,0,0.25), 
+            0 2px 16px rgba(25,118,210,0.15),
+            0 0 0 1px rgba(25,118,210,0.1),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+    100% {
+        box-shadow: 
+            0 8px 40px rgba(0,0,0,0.25), 
+            0 2px 16px rgba(25,118,210,0.3),
+            0 0 0 1px rgba(25,118,210,0.2),
+            inset 0 1px 0 rgba(255,255,255,0.2);
+    }
+}
+
+/* Subtle button glow animation for enhanced interactivity */
+@keyframes buttonGlow {
+    0% {
+        box-shadow: 
+            0 4px 16px rgba(25, 118, 210, 0.15),
+            0 2px 8px rgba(25, 118, 210, 0.08),
+            0 0 0 1px rgba(25, 118, 210, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    100% {
+        box-shadow: 
+            0 6px 20px rgba(25, 118, 210, 0.2),
+            0 3px 12px rgba(25, 118, 210, 0.12),
+            0 0 0 1px rgba(25, 118, 210, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+}
+
+@keyframes sessionButtonGlow {
+    0% {
+        box-shadow: 
+            0 4px 16px rgba(211, 47, 47, 0.15),
+            0 2px 8px rgba(211, 47, 47, 0.08),
+            0 0 0 1px rgba(211, 47, 47, 0.05),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    100% {
+        box-shadow: 
+            0 6px 20px rgba(211, 47, 47, 0.2),
+            0 3px 12px rgba(211, 47, 47, 0.12),
+            0 0 0 1px rgba(211, 47, 47, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    }
+}
+
+/* Apply subtle animations to enabled buttons */
+.ppt-btn:not(:disabled) {
+    animation: buttonGlow 4s ease-in-out infinite alternate;
+}
+
+.session-btn:not(:disabled) {
+    animation: sessionButtonGlow 4.5s ease-in-out infinite alternate;
+}

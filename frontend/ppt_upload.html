@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <title>PPT Upload & Process</title>
+        <link href="./css/styles.css" rel="stylesheet">
+        <script src="./js/ppt_upload.js"></script>
+        <script>
+            function updateHealthDot(active) {
+                var dot = document.getElementById('healthDot');
+                if (dot) {
+                    dot.style.background = active ? '#43a047' : '#d32f2f';
+                }
+            }
+            function pollHealth() {
+                fetch('http://localhost:5050/api/health')
+                    .then(r => r.ok ? updateHealthDot(true) : updateHealthDot(false))
+                    .catch(() => updateHealthDot(false));
+            }
+            setInterval(pollHealth, 3000);
+            pollHealth();
+        </script>
+        <link rel="icon" type="image/png" href="/favicon.ico">
+</head>
+<body>
+<div style="position: absolute; left: 16px; top: 4px; z-index: 1000;">
+    <img src="image/logo.png" alt="Microsoft Logo" style="height: 64px; width: auto;" />
+</div>
+<div style="text-align:center; margin-top:10px; margin-bottom:4px; position:relative;">
+    <span style="font-size:2.3em; font-weight:700; background: linear-gradient(90deg,#1976d2,#00b8d4); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display:inline-block; letter-spacing:1px;">Askly</span>
+    <div style="font-size:1.1em; color:#555; margin-top:8px;">Smarter Storytelling with AI</div>
+    <span id="healthDot" style="position:absolute; top:8px; right:24px; width:18px; height:18px; border-radius:50%; background:#d32f2f; border:2px solid #fff; box-shadow:0 0 4px #aaa; display:inline-block;" title="Backend status"></span>
+</div>
+<div style="max-width: 500px; margin: 0 auto 0 auto;">
+    <div class="card" style="max-width: 500px; margin: 32px auto 24px auto; padding: 32px 40px 28px 40px; background: #fff; box-shadow: 0 2px 16px rgba(0,0,0,0.10); border-radius: 16px; display: flex; flex-direction: column; align-items: flex-start;">
+        <label class="ppt-label" style="font-size:1.15em; margin-bottom:14px; display:flex; align-items:center; justify-content:center; width:100%; cursor:default;">
+            <span style="font-size:1.5em; margin-right:8px; color:#1976d2;">&#128196;</span> Select your Presentation File (PPT, PPTx)
+        </label>
+
+        <input type="file" id="pptFile" accept=".ppt,.pptx" class="ppt-input" style="margin-bottom:18px;" />
+        <div style="display: flex; align-items: center; gap: 12px; width: 100%; margin-bottom: 10px;">
+            <button id="uploadBtn" class="ppt-btn" style="flex:1;">Upload</button>
+            <span style="font-size:1.5em; color:#1976d2;">&#8594;</span>
+            <button id="processBtn" class="ppt-btn" style="flex:1;" disabled>Process</button>
+        </div>
+        <div id="pptStatus" class="ppt-status" style="min-height:28px; margin-bottom:8px;"></div>
+        <button id="goToAvatarBtn" class="ppt-btn" style="display:none; margin-top:18px; width:100%;" onclick="window.location.href='basic.html'">Go to Avatar Instructor</button>
+    </div>
+</div>
+</body>
+</html>

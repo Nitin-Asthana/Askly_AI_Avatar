@@ -1,0 +1,17 @@
+flask
+flask-cors
+azure-storage-blob
+azure-identity
+requests
+openai
+werkzeug
+python-dotenv
+os
+sys
+json
+uuid
+datetime
+tempfile
+re
+traceback
+subprocess

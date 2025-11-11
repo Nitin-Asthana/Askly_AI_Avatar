@@ -1,0 +1,6 @@
+        /* ALL INDICATOR FUNCTIONALITY BLOCKED */
+    }
+
+    enable() {
+        this.isEnabled = true;
+        this.startListening();
