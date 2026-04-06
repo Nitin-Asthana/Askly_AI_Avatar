@@ -109,13 +109,12 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    document.getElementById('APIKey').value = '3829b0cf6331490c9d4e4c3a5b297b9b';
+    document.getElementById('APIKey').value = <>;
     document.getElementById('region').value = 'westus2';
     document.getElementById('APIKey').disabled = true;
     document.getElementById('region').disabled = true;
 // End of DOMContentLoaded
 });
-// Copyright (c) Microsoft. All rights reserved.
 // Licensed under the MIT license.
 
 // Global objects
