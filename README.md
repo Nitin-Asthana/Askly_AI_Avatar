@@ -142,4 +142,4 @@ For full Azure cloud deployment (App Service + Static Web Apps)
 
 ## License
 
-MIT — see [LICENSE](LICENSE) for details.
+MIT
