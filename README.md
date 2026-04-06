@@ -140,3 +140,6 @@ For full Azure cloud deployment (App Service + Static Web Apps)
 - [Flask](https://flask.palletsprojects.com/) — Backend API
 - [python-pptx](https://python-pptx.readthedocs.io/) — PowerPoint parsing
 
+## License
+
+MIT — see [LICENSE](LICENSE) for details.
