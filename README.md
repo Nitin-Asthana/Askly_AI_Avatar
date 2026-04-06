@@ -1,4 +1,4 @@
-# Askly — AI Avatar Presenter
+# Project Askly — AI Avatar Presenter
 
 > Transform static PowerPoint presentations into interactive, voice-narrated experiences powered by Azure AI.
 
