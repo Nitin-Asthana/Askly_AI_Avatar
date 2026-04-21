@@ -6,9 +6,9 @@ from io import BytesIO
 
 from azure.identity import ClientSecretCredential
 
-tenant_id = "e9fa40cb-def3-4278-b467-c51e26207b4b"
-client_id = "0cac8e99-624b-4643-a18d-d0015341a7cd"
-client_secret = "-gk8Q~wPYaeGd6S9rmmc770hvkhcdmoMF2RNHcnE"
+tenant_id = ""
+client_id = ""
+client_secret = ""
 account_url = "https://storgaeforai.blob.core.windows.net"
 
 credential = ClientSecretCredential(tenant_id, client_id, client_secret)
