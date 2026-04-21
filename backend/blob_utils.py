@@ -14,7 +14,7 @@ account_url = "https://storgaeforai.blob.core.windows.net"
 credential = ClientSecretCredential(tenant_id, client_id, client_secret)
 blob_service_client = BlobServiceClient(account_url, credential=credential)
 
-#AZURE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=storgaeforai;AccountKey=XT75hujdb64YXe4RjrTV1SD7AbzRfeq2Q94xbTknYHDp245fSHB8kSh1HaHoh/s3t+jd7cphp+Nx+AStzEhwqA==;EndpointSuffix=core.windows.net"
+#AZURE_CONNECTION_STRING = "DefaultEndpointsProtocol=https;AccountName=storgaeforai;AccountKey=;EndpointSuffix=core.windows.net"
 #blob_service_client = BlobServiceClient.from_connection_string(AZURE_CONNECTION_STRING)
 
 UPLOAD_CONTAINER = "uploads"
